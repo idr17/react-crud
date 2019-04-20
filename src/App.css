@@ -23,6 +23,12 @@
   color: #61dafb;
 }
 
+/* chart */
+#chart {
+  height: 440px;
+}
+/* #eof chart */
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

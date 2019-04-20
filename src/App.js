@@ -3,6 +3,12 @@ import './App.css';
 import ProductItem from './components/ProductItem';
 import AddProduct from './components/AddProduct';
 
+import 'devextreme/dist/css/dx.common.css';
+import 'devextreme/dist/css/dx.light.compact.css';
+
+import Chart from "devextreme-react/chart";
+import dataSource from './data.js';
+
 const accounts = [
   {
     accountHolderName: 'cx100',
@@ -10,7 +16,7 @@ const accounts = [
     swiftCode: 202,
     address: 'jalan merbabu',
     city: 'surabaya',
-    country: 'indonesia',
+    country: 'IDN',
     currency: 'idr',
     type: 1, // individual | company
     firstname: 'indro',
@@ -23,7 +29,7 @@ const accounts = [
     swiftCode: 219,
     address: 'jalan terang bulan',
     city: 'malang',
-    country: 'indonesia',
+    country: 'FJI',
     currency: 'idr',
     type: 2, // individual | company
     firstname: '',
@@ -36,7 +42,7 @@ const accounts = [
     swiftCode: 145,
     address: 'jalan akal sehat',
     city: 'jember',
-    country: 'indonesia',
+    country: 'HUN',
     currency: 'idr',
     type: 2, // individual | company
     firstname: '',
@@ -53,14 +59,58 @@ class App extends Component {
     super(props);
 
     this.state = {
-      accounts: JSON.parse(localStorage.getItem('accounts'))
+      accounts: JSON.parse(localStorage.getItem('accounts')),
+      commonSeriesSettings: {
+        argumentField: "date",
+        type: "stock"
+      },
+      series: [
+        {
+            name: "DELL",
+            openValueField: "o", 
+            highValueField: "h", 
+            lowValueField: "l", 
+            closeValueField: "c", 
+            reduction: {
+                color: "red"
+            }
+        }
+      ],
+      valueAxis: {
+        tickInterval: 1,
+        title: { 
+            text: "US dollars"
+        },
+        label: {
+            format: {
+                type: "currency",
+                precision: 0
+            }
+        }
+      },
+      argumentAxis: {
+        workdaysOnly: true,
+        label: {
+            format: "shortDate"
+        }
+      },
+      tooltip: {
+        enabled: true,
+        location: "edge",
+        customizeTooltip: function (arg) {
+            return {
+                text: "Open: $" + arg.openValue + "<br/>" +
+                        "Close: $" + arg.closeValue + "<br/>" +
+                        "High: $" + arg.highValue + "<br/>" +
+                        "Low: $" + arg.lowValue + "<br/>"
+            };
+        }
+      }
     };
-
   }
 
   componentWillMount() {
     const accounts = this.getAccounts()
-
     this.setState({ accounts });
   }
 
@@ -114,6 +164,20 @@ class App extends Component {
             )
           })
         }
+
+        <React.Fragment>
+          <Chart
+            dataSource={ dataSource }
+            title="Pizza Shop Complaints"
+            commonSeriesSettings={this.state.commonSeriesSettings}
+            series={this.state.series}
+            valueAxis={this.state.valueAxis}
+            argumentAxis={this.state.argumentAxis}
+            tooltip={this.state.tooltip}
+          >
+          </Chart>
+        </React.Fragment>
+
       </div>
     );
   }

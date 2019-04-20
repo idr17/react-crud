@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Country from './Country'
 
 class ProductItem extends Component {
   constructor(props) {
@@ -72,12 +73,11 @@ class ProductItem extends Component {
   onHandleCity = (event) => {
     this.setState({ city: event.target.value })
   }
-  onHandleCountry = (event) => {
-    this.setState({ country: event.target.value })
-    console.log('this.state ', this.state.country)
+  onHandleCountry = (country) => {
+    this.setState({ country })
   }
-  onHandleCurrency = (event) => {
-    this.setState({ currency: event.target.value })
+  onChangeCurrency = (currency) => {
+    this.setState({ currency })
   }
   onHandleType = (event) => {
     this.setState({ type: event.target.value })
@@ -106,8 +106,12 @@ class ProductItem extends Component {
               <input type="text" placeholder="Swift Code" onChange={this.onHandleSwiftCode} defaultValue={this.state.swiftCode} />
               <input type="text" placeholder="Address" onChange={this.onHandleAddress} defaultValue={this.state.address} />
               <input type="text" placeholder="City" onChange={this.onHandleCity} defaultValue={this.state.city} />
-              <input type="text" placeholder="Country" onChange={this.onHandleCountry} defaultValue={this.state.country} />
-              <input type="text" placeholder="Curency" onChange={this.onHandleCurrency} defaultValue={this.state.currency} />
+              
+              <Country 
+                defVal={this.state.country} 
+                onChangeCountry={this.onHandleCountry} 
+                onChangeCurrency={this.onChangeCurrency} 
+              />
 
               <select onChange={this.onChangeType} defaultValue={this.state.type} >
                 <option value="1">Individual</option>
@@ -117,11 +121,11 @@ class ProductItem extends Component {
               {
                 this.state.type === 1 ? (
                   <div>
-                    <input placeholder="Firstname" ref={firstnameI => this.firstnameI = firstnameI} defaultValue={this.props.data.firstname} />
-                    <input placeholder="Lastname" ref={lastnameI => this.lastnameI = lastnameI} defaultValue={this.props.data.lastname} />
+                    <input type="text" placeholder="Firstname" onChange={this.onHandleFirstname} defaultValue={this.props.data.firstname} />
+                    <input type="text" placeholder="Lastname" onChange={this.onHandleLastname} defaultValue={this.props.data.lastname} />
                   </div>
                 ) : (
-                  <input placeholder="Company" ref={companyI => this.companyI = companyI} defaultValue={this.props.data.company} />
+                  <input type="text" placeholder="Company" onChange={this.onHandleCompany} defaultValue={this.props.data.company} />
                 )
               }
 
