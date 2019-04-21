@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import FormFields from '../widgets/forms/formFields'
 import Country from './Country'
 
@@ -6,7 +7,7 @@ const formDataTemplate = {
   accountHolderName: {
     element: 'input',
     value: '',
-    label: true,
+    label: false,
     labelText: 'Account Holder Name',
     config: {
       name: 'accountHolderName_input',
@@ -23,7 +24,7 @@ const formDataTemplate = {
   accountNumber: {
     element: 'input',
     value: '',
-    label: true,
+    label: false,
     labelText: 'Account Number',
     config: {
       name: 'accountNumber_input',
@@ -40,7 +41,7 @@ const formDataTemplate = {
   swiftCode: {
     element: 'input',
     value: '',
-    label: true,
+    label: false,
     labelText: 'Swift Code',
     config: {
       name: 'swiftCode_input',
@@ -57,7 +58,7 @@ const formDataTemplate = {
   address: {
     element: 'input',
     value: '',
-    label: true,
+    label: false,
     labelText: 'Address',
     config: {
       name: 'address_input',
@@ -74,62 +75,12 @@ const formDataTemplate = {
   city: {
     element: 'input',
     value: '',
-    label: true,
+    label: false,
     labelText: 'City',
     config: {
       name: 'city_input',
       type: 'text',
       placeholder: 'City'
-    },
-    validation: {
-      required: true
-    },
-    valid: false,
-    touched: false,
-    validationMesage: ''
-  },
-  // country: {
-  //   element: 'input',
-  //   value: '',
-  //   label: true,
-  //   labelText: 'Country',
-  //   config: {
-  //     name: 'country_input',
-  //     type: 'text',
-  //     placeholder: 'Country'
-  //   },
-  //   validation: {
-  //     required: true
-  //   },
-  //   valid: false,
-  //   touched: false,
-  //   validationMesage: ''
-  // },
-  // country: {
-  //   element: 'select',
-  //   value: 1,
-  //   label: true,
-  //   labelText: 'Country',
-  //   config: {
-  //     name: 'country_input',
-  //     options: []
-  //   },
-  //   validation: {
-  //     required: true
-  //   },
-  //   valid: true,
-  //   touched: false,
-  //   validationMesage: ''
-  // },  
-  currency: {
-    element: 'input',
-    value: '',
-    label: true,
-    labelText: 'Currency',
-    config: {
-      name: 'currency_input',
-      type: 'text',
-      placeholder: 'Currency'
     },
     validation: {
       required: true
@@ -162,7 +113,7 @@ const formDataTemplate = {
 const firstname = {
   element: 'input',
   value: '',  // individual: 1 | company: 2
-  label: true,
+  label: false,
   labelText: 'Firstname',
   config: {
     name: 'firstname_input',
@@ -180,7 +131,7 @@ const firstname = {
 const lastname = {
   element: 'input',
   value: '',  // individual: 1 | company: 2
-  label: true,
+  label: false,
   labelText: 'Lastname',
   config: {
     name: 'lastname_input',
@@ -198,7 +149,7 @@ const lastname = {
 const company = {
   element: 'input',
   value: '',  // individual: 1 | company: 2
-  label: true,
+  label: false,
   labelText: 'Company',
   config: {
     name: 'company_input',
@@ -216,7 +167,6 @@ const company = {
 class AddProduct extends Component {
   constructor(props) {
     super(props)
-  
     this.state = {
       formData: Object.assign({}, formDataTemplate),
       country: 'IDN',
@@ -225,7 +175,6 @@ class AddProduct extends Component {
   }
 
   updateForm = (newState) => {
-
     if (parseInt(newState.type.value) === 2) {
       newState.company = company
       delete newState.firstname
@@ -235,7 +184,6 @@ class AddProduct extends Component {
       newState.lastname = lastname
       delete newState.company
     }
-
     this.setState({ formData: newState })
   }
 
@@ -274,12 +222,10 @@ class AddProduct extends Component {
   render() {
     return (
       <form onSubmit={this.onSubmit}>
-      <h3>Add an Account</h3>
-      <FormFields formData={this.state.formData} change={ (newState) => this.updateForm(newState) } />
-      <Country defVal={this.state.country} onChangeCountry={this.onChangeCountry} onChangeCurrency={this.onChangeCurrency} />
-      <button>Add</button>
-      <hr />
-
+        <h3>Add an Account</h3>
+        <FormFields formData={this.state.formData} change={ (newState) => this.updateForm(newState) } />
+        <Country defVal={this.state.country} onChangeCountry={this.onChangeCountry} onChangeCurrency={this.onChangeCurrency} />
+        <button>Submit</button>
     </form>
     )
   }

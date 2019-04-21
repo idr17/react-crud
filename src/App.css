@@ -1,39 +1,104 @@
-.App {
+body {
+  padding:0;
+  margin:0;
+  font-family: 'Roboto', sans-serif;
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+header {
+  border-bottom: 1px solid #b6b6b6;
+  box-sizing: border-box;
+  padding: 17px;
+  background: #dfdfdf;
+  margin-bottom: 10px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+header a {
+  padding: 5px 10px;
+  background: #2196F3;
+  margin-right: 10px;
+  text-decoration: none;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: 500;
 }
 
-.App-link {
-  color: #61dafb;
+.container {
+  width: 100%;
+  text-align: center;
 }
 
-/* chart */
+.container .left { width: 30%; float: left; background-color: #ececec; padding-bottom: 50px; }
+.container .right { width: 70%; float: left; }
+.each_item { width: 100%; padding: 5px 0; font-size: 12px; }
+.each_item.head { font-weight: bold; }
+.each_item span { display: inline-block; width: 7%; }
+.each_item span button { 
+  background: #3F51B5;
+  color: #fff;
+  font-size: 10px;
+  padding: 5px 10px;
+  border: none;
+ }
+ .App h1 { background-color: #f90; padding: 10px 0; color: #fff; }
+
+.form_element {
+  margin: 20px 0px;
+}
+
+.form_element label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+input {
+  font-size: 20px;
+  padding: 8px 12px;
+  box-sizing: border-box;
+}
+
+button {
+  background: #3F51B5;
+  color: #fff;
+  font-size: 15px;
+  padding: 10px 20px;
+  border: none;
+}
+
+select {
+  width: 236px;
+  font-size: 15px;
+  padding: 10px;
+}
+
+.label_error {
+  color: #FF5722;
+  font-weight: normal;
+  margin-top: 10px;
+}
+
+h3 { font-size: 28px; font-weight: normal; }
+
 #chart {
   height: 440px;
+  padding: 20px;
 }
-/* #eof chart */
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media only screen and (max-width: 600px) {
+  .container .left { width: 100%; }
+  .container .right { width: 100%; }
+  #chart {
+    width: 100%;
+    padding: 0px;
   }
-  to {
-    transform: rotate(360deg);
-  }
+  .each_item { font-size: 7px; }
+  .each_item span button { 
+    background: #3F51B5;
+    color: #fff;
+    font-size: 7px;
+    padding: 2px 5px;
+    border: none;
+   }
 }

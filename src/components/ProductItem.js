@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
+
 import Country from './Country'
 
 class ProductItem extends Component {
   constructor(props) {
     super(props)
-
     this.state = {
       accountHolderName: this.props.data.accountHolderName,
       accountNumber: this.props.data.accountNumber,
@@ -132,7 +132,7 @@ class ProductItem extends Component {
               <button>Save</button>
             </form>
           ) : (
-            <div>
+            <div className="each_item">
               <span>{data.accountHolderName}</span>
               <span>{data.accountNumber}</span>
               <span>{data.swiftCode}</span>
@@ -140,7 +140,7 @@ class ProductItem extends Component {
               <span>{data.city}</span>
               <span>{data.country}</span>
               <span>{data.currency}</span>
-              <span>{data.type}</span>
+              <span>{data.type === 1 ? 'Individual' : 'Company'}</span>
               <span>{data.firstname}</span>
               <span>{data.lastname}</span>
               <span>{data.company}</span>

@@ -34,8 +34,8 @@ class Country extends Component {
 
   render() {
     return (
-      <div>
-        Country
+      <div className="form_element">
+        <label>Country</label>
         <select  
           value={this.props.defVal}
           name="country_input"
